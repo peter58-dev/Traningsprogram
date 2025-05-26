@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { WorkoutService } from '../services/workout.service';
 
 @Component({
   selector: 'app-home',
@@ -6,8 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  workoutService = inject(WorkoutService);
 
   constructor() {}
 
+  async ngOnInit() {
+    await this.workoutService.loadWorkouts();
+  }
 }
