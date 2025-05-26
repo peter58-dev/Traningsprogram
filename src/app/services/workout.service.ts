@@ -1,5 +1,11 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+} from '@angular/fire/firestore';
 import { ExerciseInterface } from '../model/exercise';
 
 @Injectable({
@@ -21,5 +27,11 @@ export class WorkoutService {
         (doc) => ({ id: doc.id, ...doc.data() } as ExerciseInterface)
       )
     );
+  }
+
+  async deleteExercise(id: string) {
+    const docRef = doc(this.firestore, 'exerciseProgram', id); // 🔹 Rätt sätt att referera till dokumentet
+    await deleteDoc(docRef);
+    await this.loadWorkouts(); // 🔹 Uppdatera listan direkt
   }
 }

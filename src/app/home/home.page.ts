@@ -9,10 +9,19 @@ import { WorkoutService } from '../services/workout.service';
 })
 export class HomePage implements OnInit {
   workoutService = inject(WorkoutService);
+  id!: string;
 
   constructor() {}
 
   async ngOnInit() {
     await this.workoutService.loadWorkouts();
+  }
+
+  async delete(id: string) {
+    await this.workoutService.deleteExercise(id);
+  }
+
+  addNewWorkout() {
+    console.log('CLICKAD!');
   }
 }
