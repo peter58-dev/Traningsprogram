@@ -1,0 +1,87 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form ion-input {
+  margin-bottom: 15px;
+}
+
+.contact-form ion-button {
+  margin-top: 20px;
+}
+
+.contact-form .form-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form .form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.contact-form .form-actions ion-button {
+  width: 48%;
+}
+
+.contact-form ion-label {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.contact-form .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-form .input-group ion-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form .input-group ion-input:focus {
+  border-color: #4caf50;
+}
+
+/* .contact-form: Här definieras det övergripande utseendet på själva formuläret.
+ Vi använder flexbox för att arrangera fälten vertikalt och ger lite padding och 
+ en fin skugga för att göra det mer visuellt tilltalande.
+
+ion-input: Stilar för varje inputfält (t.ex. namn och telefonnummer) för att ge dem en snyggare layout
+ och lägga till mellanrum mellan fälten.
+ion-button: Stilar för knapparna, med extra utrymme ovanför.
+form-header: Om du vill ha en rubrik i formuläret (t.ex. "Lägg till kontakt" eller "Redigera kontakt").
+form-actions: Om du har två knappar som "Save" och "Cancel", kan du använda denna klass för att
+ placera dem horisontellt med flexbox och ge dem ett mellanrum. */
+
+//markera klickbara kolumner
+.clickable {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.clickable:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Lätt markering vid hover */
+}
+
+// <ion-col size="3" class="clickable" (click)="openDetailsModal(person)">
+
+/* openDetailsModal(person: PersonInterface) {
+    console.log('Öppnar modal för:', person);
+    // Här öppnar du modal-komponenten och skickar in `person`
+  } */

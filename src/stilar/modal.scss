@@ -1,0 +1,36 @@
+.new-modal {
+  ion-content {
+    background-color: lightblue;
+    padding: 1rem;
+  }
+
+  .modal-header {
+    font-size: 1.5rem;
+    color: #333;
+  }
+}
+
+.edit-modal {
+  ion-content {
+    background-color: lightgreen;
+    padding: 1.5rem;
+  }
+
+  .modal-header {
+    font-size: 1.8rem;
+    color: #222;
+  }
+}
+
+ion-modal {
+  --height: auto;
+  --max-height: 90vh;
+}
+
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}

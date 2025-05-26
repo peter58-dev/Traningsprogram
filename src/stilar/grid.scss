@@ -1,0 +1,42 @@
+.contact-grid {
+  ion-row {
+    margin-bottom: 10px;
+  }
+
+  .header-row {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+
+  .odd-row {
+    background-color: #dcdcdc; /* Grå bakgrund för udda rader */
+  }
+
+  //alltid synlig vid scroll
+  .custom-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+  }
+
+  .custom-row {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Lägg till en skugga på rader */
+  }
+
+  ion-col {
+    padding: 10px;
+    text-align: center;
+  }
+
+  //Anpassa ikonernas placering och storlek
+  ion-icon {
+    font-size: 1.4rem;
+    margin: 0 5px;
+    color: #333; /* Standardfärg */
+  }
+
+  ion-icon:hover {
+    color: #007aff; /* Blå färg vid hover */
+  }
+}
