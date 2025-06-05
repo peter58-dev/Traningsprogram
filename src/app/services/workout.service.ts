@@ -2,10 +2,12 @@ import { Injectable, inject, signal } from '@angular/core';
 import {
   Firestore,
   addDoc,
+  arrayUnion,
   collection,
   deleteDoc,
   doc,
   getDocs,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { ExerciseInterface } from '../model/exercise';
 import { nanoid } from 'nanoid';
@@ -46,6 +48,18 @@ export class WorkoutService {
       sets: [], // 🔹 Starta med tom array för set
     };
     await addDoc(workoutCollection, newExercise);
+    await this.loadWorkouts(); //uppdatera listan direkt
+  }
+
+  async addSet(
+    exerciseId: string,
+    newSet: { setNumber: number; weight: string; discs: string; reps: string }
+  ) {
+    const docRef = doc(this.firestore, 'exerciseProgram', exerciseId);
+
+    await updateDoc(docRef, {
+      sets: arrayUnion(newSet), //lägg till ett nytt set i arrayen
+    });
     await this.loadWorkouts(); //uppdatera listan direkt
   }
 }
