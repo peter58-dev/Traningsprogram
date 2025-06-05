@@ -1,4 +1,13 @@
 <ion-content class="ion-padding">
   <h2>Ny övning</h2>
+  <form [formGroup]="newExerciseForm()">
+    <label for="exerciseName">Namn:</label>
+    <input id="exerciseName" formControlName="exerciseName" />
+    <div>
+      <ion-button type="button" (click)="confirm()">Spara</ion-button>
+      <ion-button type="button" (click)="cancel()">Avbryt</ion-button>
+    </div>
+  </form>
+
   <ion-button color="danger" (click)="cancel()">Cancel</ion-button>
 </ion-content>
