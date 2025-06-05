@@ -1,16 +1,12 @@
 export interface ExerciseInterface {
   id: string;
   exerciseName: string;
-  firstSet?: number;
-  weightFirstSet?: string;
-  repsFirstSet?: string;
-  secondSet?: number;
-  repsSecondSet?: string;
-  weightSecondSet?: string;
-  thirdSet?: number;
-  repsThirdSet?: string;
-  weightThirdSet?: string;
-  platesFirstSet?: string;
-  platesSecondSet?: string;
-  platesThirdSet?: string;
+  sets: {
+    setNumber: number;
+    weight: string;
+    discs: string;
+    reps: string;
+  }[];
 }
+
+// sets är en array som gör det enkelt att hantera flera set

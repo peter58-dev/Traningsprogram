@@ -1,12 +1,14 @@
 import { Injectable, inject, signal } from '@angular/core';
 import {
   Firestore,
+  addDoc,
   collection,
   deleteDoc,
   doc,
   getDocs,
 } from '@angular/fire/firestore';
 import { ExerciseInterface } from '../model/exercise';
+import { nanoid } from 'nanoid';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +35,17 @@ export class WorkoutService {
     const docRef = doc(this.firestore, 'exerciseProgram', id); // 🔹 Rätt sätt att referera till dokumentet
     await deleteDoc(docRef);
     await this.loadWorkouts(); // 🔹 Uppdatera listan direkt
+  }
+
+  async addNewExercise(exerciseName: string) {
+    const workoutCollection = collection(this.firestore, 'exerciseProgram');
+
+    const newExercise: ExerciseInterface = {
+      id: nanoid(9), // genererar unik ID
+      exerciseName: exerciseName, //tar namnnet från formuläret
+      sets: [], // 🔹 Starta med tom array för set
+    };
+    await addDoc(workoutCollection, newExercise);
+    await this.loadWorkouts(); //uppdatera listan direkt
   }
 }
