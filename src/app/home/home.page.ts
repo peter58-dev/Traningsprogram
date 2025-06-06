@@ -46,5 +46,10 @@ export class HomePage implements OnInit {
       componentProps: { exerciseId },
     });
     await modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm' && data?.newSet) {
+      await this.workoutService.addSet(exerciseId, data.newSet);
+    }
   }
 }
