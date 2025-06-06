@@ -2,7 +2,7 @@
   <h2>Ny set</h2>
   <form [formGroup]="newSetForm()">
     <div *ngFor="let set of setArray.controls; let i = index">
-      <label for="weight">set : Vikt:</label>
+      <label for="weight">set {{ i + 1 }}: Vikt:</label>
       <input formControlName="weight" type="number" />
 
       <label for="reps">Reps:</label>
