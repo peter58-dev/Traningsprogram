@@ -8,29 +8,36 @@
   <ng-container *ngIf="workoutService.workouts().length > 0; else noWorkouts">
     <ion-list>
       <ion-item *ngFor="let workout of workoutService.workouts()">
-        <p>{{workout.exerciseName}}</p>
+        <p>{{ workout.exerciseName }}</p>
         <ion-button fill="clear" (click)="delete(workout.id)">
           <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
         </ion-button>
-        <ion-button fill="clear" (click)="openNewSet(workout.id)"
-          >Ny set</ion-button
-        >
 
-        <!--  <ion-button fill="clear">
-          <ion-icon
-            slot="icon-only"
-            name="checkmark"
-            color="success"
-          ></ion-icon>
-        </ion-button> -->
+        <!-- 🔹 Visa Ny Set-knapp endast om workout.sets är tom -->
+        <ng-container *ngIf="workout.sets.length === 0">
+          <ion-button fill="clear" (click)="openNewSet(workout.id)"
+            >Ny set</ion-button
+          >
+        </ng-container>
+
+        <!-- 🔹 Visa befintliga set -->
+        <ion-list *ngIf="workout.sets.length > 0">
+          <ion-item *ngFor="let set of workout.sets">
+            <p>
+              Set {{ set.setNumber }}: {{ set.weight }} kg, {{ set.reps }} reps
+            </p>
+          </ion-item>
+        </ion-list>
       </ion-item>
     </ion-list>
   </ng-container>
+
   <div>
     <ion-button color="primary" (click)="openNewExercise()"
       >Lägg till ny övning</ion-button
     >
   </div>
+
   <ng-template #noWorkouts>
     <div class="no-workouts">
       <p>Hittar inga övningar</p>
