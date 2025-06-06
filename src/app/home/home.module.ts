@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { NewExerciseComponent } from '../components/new-exercise/new-exercise.component';
+import { NewSetComponent } from '../components/new-set/new-set.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { NewExerciseComponent } from '../components/new-exercise/new-exercise.co
     HomePageRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [HomePage, NewExerciseComponent],
+  declarations: [HomePage, NewExerciseComponent, NewSetComponent],
 })
 export class HomePageModule {}
