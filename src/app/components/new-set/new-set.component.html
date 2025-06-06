@@ -1,3 +1,17 @@
-<p>
-  new-set works!
-</p>
+<ion-content class="ion-padding">
+  <h2>Ny set</h2>
+  <form [formGroup]="newSetForm()">
+    <div>
+      <label for="weight">set : Vikt:</label>
+      <input formControlName="weight" type="number" />
+
+      <label for="reps">Reps:</label>
+      <input type="number" formControlName="reps" />
+    </div>
+
+    <div>
+      <ion-button type="button" (click)="addNewSet()">Spara</ion-button>
+      <ion-button type="button" (click)="cancel()">Avbryt</ion-button>
+    </div>
+  </form>
+</ion-content>
