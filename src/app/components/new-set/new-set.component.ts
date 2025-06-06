@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, inject, signal } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Signal,
+  inject,
+  signal,
+} from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { WorkoutService } from '../../services/workout.service';
@@ -14,22 +21,25 @@ export class NewSetComponent implements OnInit {
   private fb = inject(FormBuilder);
 
   @Input() exerciseId: string | undefined;
+  newSetForm!: Signal<FormGroup>; // 🔹 Deklarera korrekt typ här!
 
-  constructor() {}
+  constructor() {
+    this.newSetForm = signal(
+      this.fb.group({
+        sets: this.fb.array([
+          this.fb.group({
+            setNumber: [1],
+            weight: ['', Validators.required],
+            discs: [''],
+            reps: ['', Validators.required],
+          }),
+        ]),
+      })
+    );
+  }
 
   ngOnInit() {}
-  newSetForm = signal(
-    this.fb.group({
-      sets: this.fb.array([
-        this.fb.group({
-          setNumber: [1],
-          weight: ['', Validators.required],
-          discs: [''],
-          reps: ['', Validators.required],
-        }),
-      ]),
-    })
-  );
+
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
