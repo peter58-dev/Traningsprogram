@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { WorkoutService } from '../services/workout.service';
 import { ModalController } from '@ionic/angular';
 import { NewExerciseComponent } from '../components/new-exercise/new-exercise.component';
+import { NewSetComponent } from '../components/new-set/new-set.component';
 
 @Component({
   selector: 'app-home',
@@ -38,5 +39,12 @@ export class HomePage implements OnInit {
 
   addNewWorkout() {
     console.log('CLICKAD!');
+  }
+  async openNewSet(exerciseId: string) {
+    const modal = await this.ctrlModal.create({
+      component: NewSetComponent,
+      componentProps: { exerciseId },
+    });
+    await modal.present();
   }
 }
