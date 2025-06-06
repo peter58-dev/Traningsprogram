@@ -12,14 +12,17 @@
         <ion-button fill="clear" (click)="delete(workout.id)">
           <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
         </ion-button>
+        <ion-button fill="clear" (click)="openNewSet(workout.id)"
+          >Ny set</ion-button
+        >
 
-        <ion-button fill="clear">
+        <!--  <ion-button fill="clear">
           <ion-icon
             slot="icon-only"
             name="checkmark"
             color="success"
           ></ion-icon>
-        </ion-button>
+        </ion-button> -->
       </ion-item>
     </ion-list>
   </ng-container>
