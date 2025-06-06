@@ -1,7 +1,7 @@
 <ion-content class="ion-padding">
   <h2>Ny set</h2>
   <form [formGroup]="newSetForm()">
-    <div>
+    <div *ngFor="let set of setArray.controls; let i = index">
       <label for="weight">set : Vikt:</label>
       <input formControlName="weight" type="number" />
 
