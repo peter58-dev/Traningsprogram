@@ -40,6 +40,10 @@ export class NewSetComponent implements OnInit {
 
   ngOnInit() {}
 
+  get setArray(): FormArray {
+    return this.newSetForm().get('sets') as FormArray;
+    //Nu kan 'setsArray.controls' användas  direkt i HTML
+  }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
