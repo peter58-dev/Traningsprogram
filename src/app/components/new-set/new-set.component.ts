@@ -4,11 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-new-set',
   templateUrl: './new-set.component.html',
   styleUrls: ['./new-set.component.scss'],
+  standalone: false,
 })
-export class NewSetComponent  implements OnInit {
-
-  constructor() { }
+export class NewSetComponent implements OnInit {
+  constructor() {}
 
   ngOnInit() {}
-
 }
