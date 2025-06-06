@@ -12,7 +12,7 @@ import { WorkoutService } from '../../services/workout.service';
 export class NewSetComponent implements OnInit {
   private modalCtrl = inject(ModalController);
   private fb = inject(FormBuilder);
-  private workoutService = inject(WorkoutService);
+
   @Input() exerciseId: string | undefined;
 
   constructor() {}
@@ -34,11 +34,26 @@ export class NewSetComponent implements OnInit {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
+  addNewSet() {
+    const setsArray = this.newSetForm().get('sets') as FormArray;
+
+    setsArray.push(
+      this.fb.group({
+        setNumber: [setsArray.length + 1],
+        weight: ['', Validators.required],
+        reps: ['', Validators.required],
+        discs: [''],
+      })
+    );
+  }
+
   confirm() {
-    if (this.newExerciseForm().valid) {
+    if (this.newSetForm().valid) {
+      const setsArray = this.newSetForm().get('sets') as FormArray; // 🔹 Deklarera här
+
       this.modalCtrl.dismiss(
         {
-          exerciseName: this.newExerciseForm().value.exerciseName,
+          newSet: setsArray.value[setsArray.length - 1], // 🔹 Korrekt referens
         },
         'confirm'
       );
