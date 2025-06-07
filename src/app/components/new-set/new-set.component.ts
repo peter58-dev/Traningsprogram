@@ -21,56 +21,9 @@ export class NewSetComponent implements OnInit {
   private fb = inject(FormBuilder);
 
   @Input() exerciseId: string | undefined;
-  newSetForm!: Signal<FormGroup>; // 🔹 Deklarera korrekt typ här!
 
-  constructor() {
-    this.newSetForm = signal(
-      this.fb.group({
-        sets: this.fb.array([
-          this.fb.group({
-            setNumber: [1],
-            weight: ['', Validators.required],
-            discs: [''],
-            reps: ['', Validators.required],
-          }),
-        ]),
-      })
-    );
-  }
-
-  ngOnInit() {}
-
-  get setArray(): FormArray {
-    return this.newSetForm().get('sets') as FormArray;
-    //Nu kan 'setsArray.controls' användas  direkt i HTML
-  }
-  cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
-  }
-
-  addNewSet() {
-    const setsArray = this.newSetForm().get('sets') as FormArray;
-
-    setsArray.push(
-      this.fb.group({
-        setNumber: [setsArray.length + 1],
-        weight: ['', Validators.required],
-        reps: ['', Validators.required],
-        discs: [''],
-      })
-    );
-  }
-
-  confirm() {
-    if (this.newSetForm().valid) {
-      const setsArray = this.newSetForm().get('sets') as FormArray; // 🔹 Deklarera här
-
-      this.modalCtrl.dismiss(
-        {
-          newSet: setsArray.value[setsArray.length - 1], // 🔹 Korrekt referens
-        },
-        'confirm'
-      );
-    }
+  constructor() {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 }

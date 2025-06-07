@@ -29,12 +29,12 @@ export class HomePage implements OnInit {
     await modal.present();
     const { data, role } = await modal.onWillDismiss();
     if (role === 'confirm' && data?.exerciseName) {
-      await this.workoutService.addNewExercise(data.exerciseName);
+      // await this.workoutService.addNewExercise(data.exerciseName);
     }
   }
 
   async delete(id: string) {
-    await this.workoutService.deleteExercise(id);
+    // await this.workoutService.deleteExercise(id);
   }
 
   addNewWorkout() {
@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
 
     const { data, role } = await modal.onWillDismiss();
     if (role === 'confirm' && data?.newSet) {
-      await this.workoutService.addSet(exerciseId, data.newSet);
+      // await this.workoutService.addSet(exerciseId, data.newSet);
     }
   }
 }

@@ -1,17 +1,3 @@
 <ion-content class="ion-padding">
   <h2>Ny set</h2>
-  <form [formGroup]="newSetForm()">
-    <div *ngFor="let set of setArray.controls; let i = index">
-      <label for="weight">set {{ i + 1 }}: Vikt:</label>
-      <input formControlName="weight" type="number" />
-
-      <label for="reps">Reps:</label>
-      <input type="number" formControlName="reps" />
-    </div>
-
-    <div>
-      <ion-button type="button" (click)="addNewSet()">Spara</ion-button>
-      <ion-button type="button" (click)="cancel()">Avbryt</ion-button>
-    </div>
-  </form>
 </ion-content>
