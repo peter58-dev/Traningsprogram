@@ -1,3 +1,3 @@
 #pages
 
-Mappen är f.n. tom
+Testad från Mac – allt fungerar! 🍏✅
