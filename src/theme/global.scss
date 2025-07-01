@@ -1,33 +1,37 @@
-@import 'variables';
+// ======================================
+// Global Theme Entry Point (Ionic/SCSS)
+// ======================================
+
+// 1. Sass Tokens – SCSS-variabler för färger och teman
+@use 'tokens' as *;
+
+// 2. CSS Variables Generator
+@use 'variables'; // skapar :root med --ion-color-*
+
+// 3. Partial Imports
 @import 'partials/error';
 @import 'partials/form';
 @import 'partials/grid';
 @import 'partials/modal';
 
+// 4. Ionic Core CSS
+@import '@ionic/angular/css/core.css';
 
-/* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+// 5. Ionic Basic CSS
+@import '@ionic/angular/css/normalize.css';
+@import '@ionic/angular/css/structure.css';
+@import '@ionic/angular/css/typography.css';
+@import '@ionic/angular/css/display.css';
 
-/* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+// 6. Optional Utilities
+@import '@ionic/angular/css/padding.css';
+@import '@ionic/angular/css/float-elements.css';
+@import '@ionic/angular/css/text-alignment.css';
+@import '@ionic/angular/css/text-transformation.css';
+@import '@ionic/angular/css/flex-utils.css';
 
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
-
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// 7. Dark Mode (default: system)
+@import '@ionic/angular/css/palettes/dark.system.css';
+// Du kan växla till:
+// @import '@ionic/angular/css/palettes/dark.always.css';
+// @import '@ionic/angular/css/palettes/dark.class.css';
