@@ -8,11 +8,12 @@
 // 2. CSS Variables Generator
 @use 'variables'; // skapar :root med --ion-color-*
 
-// 3. Partial Imports
-@import 'partials/error';
-@import 'partials/form';
-@import 'partials/grid';
-@import 'partials/modal';
+// 3. Partial Imports (modern @use)
+@use 'partials/error' as *;
+@use 'partials/form' as *;
+@use 'partials/grid' as *;
+@use 'partials/modal' as *;
+
 
 // 4. Ionic Core CSS
 @import '@ionic/angular/css/core.css';
