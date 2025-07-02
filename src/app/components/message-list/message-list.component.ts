@@ -20,7 +20,7 @@ export class MessageListComponent implements OnInit {
   }
 
   async loadMessagesOnce() {
-    const col = fsCollection(this.fireStore, 'messages');
+    const col = fsCollection(this.fireStore, 'meddelanden');
     const snapshot = await fsGetDocs(col);
 
     const data = snapshot.docs.map((doc) => doc.data() as Message);
