@@ -4,11 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-message-form',
   templateUrl: './message-form.component.html',
   styleUrls: ['./message-form.component.scss'],
+  standalone: false,
 })
-export class MessageFormComponent  implements OnInit {
-
-  constructor() { }
+export class MessageFormComponent implements OnInit {
+  constructor() {}
 
   ngOnInit() {}
-
 }
