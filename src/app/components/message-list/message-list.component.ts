@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { collection as fsCollection, getDocs as fsGetDocs } from 'firebase/firestore';
+
+import { Message } from 'src/app/models/message.model';
 
 @Component({
   selector: 'app-message-list',
@@ -7,7 +11,20 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class MessageListComponent implements OnInit {
-  constructor() {}
+  meddelanden = signal<Message[]>([]);
+  loading = signal(true);
+  constructor(private fireStore: Firestore) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadMessagesOnce();
+  }
+
+  async loadMessagesOnce() {
+    const col = fsCollection(this.fireStore, 'messages');
+    const snapshot = await fsGetDocs(col);
+
+    const data = snapshot.docs.map((doc) => doc.data() as Message);
+    this.meddelanden.set(data);
+    this.loading.set(false);
+  }
 }
