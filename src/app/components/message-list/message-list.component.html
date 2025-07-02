@@ -1,3 +1,17 @@
-<p>
-  message-list works!
-</p>
+<div *ngIf="loading(); else list">Hämtar meddelanden...</div>
+
+<ng-template #list>
+  <ng-container *ngIf="meddelanden().length > 0; else maybeEmpty">
+    <ul>
+      <li *ngFor="let message of meddelanden()">
+        {{ message.content }}
+      </li>
+    </ul>
+  </ng-container>
+</ng-template>
+
+<ng-template #maybeEmpty>
+  <div *ngIf="!loading()">
+    <h2>Hittar inga meddelanden 🧺</h2>
+  </div>
+</ng-template>
