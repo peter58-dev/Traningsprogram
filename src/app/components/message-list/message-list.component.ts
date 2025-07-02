@@ -4,11 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-message-list',
   templateUrl: './message-list.component.html',
   styleUrls: ['./message-list.component.scss'],
+  standalone: false,
 })
-export class MessageListComponent  implements OnInit {
-
-  constructor() { }
+export class MessageListComponent implements OnInit {
+  constructor() {}
 
   ngOnInit() {}
-
 }
