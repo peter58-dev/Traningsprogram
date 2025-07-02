@@ -6,4 +6,11 @@
 
 <ion-content>
   <ion-button color="success">Spara</ion-button>
+  <div>
+    <ion-button (click)="toggleMeddelanden()">
+      {{ visaMeddelanden() ? 'Dölj meddelanden' : 'Visa meddelanden' }}
+    </ion-button>
+
+    <app-message-list *ngIf="visaMeddelanden()"></app-message-list>
+  </div>
 </ion-content>
