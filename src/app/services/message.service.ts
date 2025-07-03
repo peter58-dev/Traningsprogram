@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { Message } from '../models/message.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessageService {
-
-  constructor() { }
+  meddelanden = signal<Message[]>([]);
+  constructor() {}
 }
