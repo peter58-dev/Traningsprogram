@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-message-form',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class MessageFormComponent implements OnInit {
-  constructor() {}
+  newMessageForm!: FormGroup;
 
-  ngOnInit() {}
+  constructor(
+    private fb: FormBuilder,
+    private modalCtrl: ModalController
+  ) {}
+
+  ngOnInit(): void {
+    this.newMessageForm = this.fb.group({
+      meddelande: ['', Validators.required],
+    });
+  }
 }
