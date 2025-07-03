@@ -13,4 +13,15 @@
 
     <app-message-list *ngIf="visaMeddelanden()"></app-message-list>
   </div>
+  <div class="btns">
+    <ion-button size="small" (click)="toggleMeddelanden()">
+      {{ visaMeddelanden() ? 'Dölj meddelanden' : 'Visa meddelanden' }}
+      <ion-icon slot="end" name="eye"></ion-icon>
+    </ion-button>
+
+    <ion-button color="success" size="small">
+      <ion-icon slot="start" name="add"></ion-icon>
+      Left Icon
+    </ion-button>
+  </div>
 </ion-content>
