@@ -27,6 +27,6 @@ export class MessageService {
       content,
       createdAt: Timestamp.now(),
     });
-    await this.getAllMsg(); // 🟢 Automatiskt uppdatera listan!
+    await this.getAllMsg(); //Automatiskt uppdatera listan!
   }
 }
