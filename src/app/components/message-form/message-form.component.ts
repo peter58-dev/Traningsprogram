@@ -26,4 +26,8 @@ export class MessageFormComponent implements OnInit {
     if (this.newMessageForm.invalid) return;
     const msg = this.newMessageForm.value.meddelande;
   }
+
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'cancel');
+  }
 }
