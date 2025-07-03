@@ -6,5 +6,6 @@ import { Message } from '../models/message.model';
 })
 export class MessageService {
   meddelanden = signal<Message[]>([]);
+  loading = signal(false);
   constructor() {}
 }
