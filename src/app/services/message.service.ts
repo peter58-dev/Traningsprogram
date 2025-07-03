@@ -20,4 +20,13 @@ export class MessageService {
     this.meddelanden.set(data);
     this.loading.set(false);
   }
+
+  async addMessage(content: string) {
+    const ref = collection(this.fireStore, 'messages');
+    await addDoc(ref, {
+      content,
+      createdAt: Timestamp.now(),
+    });
+    await this.getAllMsg(); // 🟢 Automatiskt uppdatera listan!
+  }
 }
