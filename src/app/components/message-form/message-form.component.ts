@@ -25,6 +25,7 @@ export class MessageFormComponent implements OnInit {
   spara() {
     if (this.newMessageForm.invalid) return;
     const msg = this.newMessageForm.value.meddelande;
+    this.cancel();
   }
 
   cancel() {
