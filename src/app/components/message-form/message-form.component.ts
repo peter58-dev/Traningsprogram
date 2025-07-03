@@ -21,4 +21,9 @@ export class MessageFormComponent implements OnInit {
       meddelande: ['', Validators.required],
     });
   }
+
+  spara() {
+    if (this.newMessageForm.invalid) return;
+    const msg = this.newMessageForm.value.meddelande;
+  }
 }
