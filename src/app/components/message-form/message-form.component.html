@@ -12,11 +12,7 @@
   <form [formGroup]="newMessageForm">
     <ion-item>
       <ion-label position="floating">Skriv meddelandet</ion-label>
-      <ion-input formControlName="meddelande" type="text" fill="solid"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Skriv meddelandet</ion-label>
-      <ion-textarea formControlName="meddelande" type="text" fill="solid"></ion-textarea>
+      <ion-textarea formControlName="meddelande" fill="solid" auto-grow="true"></ion-textarea>
     </ion-item>
 
     <ion-text
