@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-message-form',
@@ -13,7 +14,8 @@ export class MessageFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private msgService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -22,10 +24,11 @@ export class MessageFormComponent implements OnInit {
     });
   }
 
-  spara() {
+  async spara() {
     if (this.newMessageForm.invalid) return;
     const msg = this.newMessageForm.value.meddelande;
-    this.cancel();
+    await this.msgService.addMessage(msg);
+    this.modalCtrl.dismiss(null, 'success');
   }
 
   cancel() {
