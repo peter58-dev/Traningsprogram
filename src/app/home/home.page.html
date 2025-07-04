@@ -4,24 +4,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button color="success">Spara</ion-button>
-  <div>
-    <ion-button (click)="toggleMeddelanden()">
-      {{ visaMeddelanden() ? 'Dölj meddelanden' : 'Visa meddelanden' }}
-    </ion-button>
-
-    <app-message-list *ngIf="visaMeddelanden()"></app-message-list>
-  </div>
-  <div class="btns">
-    <ion-button size="small" (click)="toggleMeddelanden()">
-      {{ visaMeddelanden() ? 'Dölj meddelanden' : 'Visa meddelanden' }}
-      <ion-icon slot="end" name="eye"></ion-icon>
-    </ion-button>
-
-    <ion-button color="success" size="small" (click)="openNewMessModal()">
-      <ion-icon slot="start" name="add"></ion-icon>
-      Meddelande
-    </ion-button>
-  </div>
+<ion-content class="ion-padding">
+  <h2>Styrketränings program</h2>
 </ion-content>
