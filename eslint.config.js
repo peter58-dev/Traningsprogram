@@ -39,9 +39,7 @@ export default [
 
   {
     files: ['**/*.html'],
-    languageOptions: {
-      parser: angularTemplatePlugin.parsers['.html'],
-    },
+
     plugins: {
       '@angular-eslint/template': angularTemplatePlugin,
     },
