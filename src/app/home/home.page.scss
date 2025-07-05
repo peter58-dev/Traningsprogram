@@ -1,27 +1,16 @@
-#container {
+.greetings {
+  margin-top: 2rem;
   text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+ion-content {
+  background: var(--app-background) !important;
 }

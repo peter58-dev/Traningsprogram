@@ -8,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
   constructor() {}
+  green() {
+    console.log('grön');
+  }
+  basket() {
+    console.log('BOLLn');
+  }
 }
