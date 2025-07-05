@@ -1,3 +1,5 @@
+@import 'theme/variables';
+
 /* Core CSS required for Ionic components to work properly */
 @import '@ionic/angular/css/core.css';
 
@@ -24,12 +26,3 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
-
-.ion-color-basketboll {
-  --ion-color-base: var(--ion-color-basketboll);
-  --ion-color-base-rgb: var(--ion-color-basketboll-rgb);
-  --ion-color-contrast: var(--ion-color-basketboll-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-basketboll-contrast-rgb);
-  --ion-color-shade: var(--ion-color-basketboll-shade);
-  --ion-color-tint: var(--ion-color-basketboll-tint);
-}

@@ -64,19 +64,39 @@
 
   --ion-color-basketboll: #fa8320;
   --ion-color-basketboll-rgb: 250, 131, 32;
-  --ion-color-basketboll-contrast: #ffffff;
-  --ion-color-basketboll-contrast-rgb: 255, 255, 255;
-  --ion-color-basketboll-shade: #dd701c;
-  --ion-color-basketboll-tint: #fb9949;
-
-  --ion-toolbar-background: var(--ion-color-primary);
-
-  --ion-toolbar-color: var(--ion-color-primary-contrast);
-
-  --ion-color-basketboll: #fa8320;
-  --ion-color-basketboll-rgb: 250, 131, 32;
   --ion-color-basketboll-contrast: #000000;
   --ion-color-basketboll-contrast-rgb: 0, 0, 0;
   --ion-color-basketboll-shade: #dc731c;
   --ion-color-basketboll-tint: #fb8f36;
+
+  --ion-background-color: #fff1e6; /* välj din basfärg   */
+  --ion-background-color-rgb: 255, 241, 230; /* samma i rgb‑format */
+  --ion-text-color: #2f2f2f; /* valfri textfärg   */
+  --ion-text-color-rgb: 47, 47, 47;
+}
+
+.ion-color-basketboll {
+  --ion-color-base: var(--ion-color-basketboll);
+  --ion-color-base-rgb: var(--ion-color-basketboll-rgb);
+  --ion-color-contrast: var(--ion-color-basketboll-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-basketboll-contrast-rgb);
+  --ion-color-shade: var(--ion-color-basketboll-shade);
+  --ion-color-tint: var(--ion-color-basketboll-tint);
+}
+
+ion-content {
+  --background: var(--ion-background-color);
+}
+
+ion-toolbar {
+  /* Bakgrund + text */
+  --background: var(--ion-color-basketboll);
+  --color: var(--ion-color-primary-contrast);
+  /* Om du vill ta bort default‑borden i iOS/MD */
+  --border-color: transparent;
+}
+
+ion-toolbar ion-title {
+  text-align: center;
+  font-size: 1.75rem;
 }
