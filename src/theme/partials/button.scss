@@ -1,0 +1,55 @@
+/* --- Layout for the button row ------------------------------------------ */
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem; /* space between buttons */
+  padding: 0 1.5rem; /* horizontal “frame” */
+  margin: 1rem 0;
+  flex-wrap: wrap; /* wrap if it gets too narrow */
+}
+
+/* --- Shared button styling --------------------------------------------- */
+ion-button.btn {
+  text-transform: none; /* show text exactly as written in HTML */
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  --border-radius: 8px;
+
+  /* Hover feedback (always active on pointer devices) */
+  &:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  /* Optional darker‐mode tweak */
+  html.dark & {
+    &:hover {
+      filter: brightness(1.25);
+      box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+/* --- Ripple plumbing ---------------------------------------------------- */
+.ripple-parent {
+  /* add to every button that should ripple */
+  position: relative; /* required so the ripple can size itself */
+  overflow: hidden; /* keeps the wave inside the button */
+}
+
+/* 1) Hide ripple by default (desktop) */
+.ripple-parent ion-ripple-effect {
+  display: none;
+}
+
+/* 2) Show ripple only on devices that lack a hover‑capable pointer
+        (= most touch screens).  */
+@media (hover: none) {
+  .ripple-parent ion-ripple-effect {
+    display: block;
+    color: rgba(255, 255, 255, 0.35); /* wave tint – tweak if you like */
+  }
+}

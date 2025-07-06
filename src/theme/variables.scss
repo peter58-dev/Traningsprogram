@@ -69,6 +69,13 @@
   --ion-color-basketboll-shade: #dc731c;
   --ion-color-basketboll-tint: #fb8f36;
 
+  --ion-color-lista: #99b3ea;
+  --ion-color-lista-rgb: 153, 179, 234;
+  --ion-color-lista-contrast: #000000;
+  --ion-color-lista-contrast-rgb: 0, 0, 0;
+  --ion-color-lista-shade: #879ece;
+  --ion-color-lista-tint: #a3bbec;
+
   --ion-background-color: #fff1e6; /* välj din basfärg   */
   --ion-background-color-rgb: 255, 241, 230; /* samma i rgb‑format */
   --ion-text-color: #2f2f2f; /* valfri textfärg   */
@@ -83,9 +90,15 @@
   --ion-color-shade: var(--ion-color-basketboll-shade);
   --ion-color-tint: var(--ion-color-basketboll-tint);
 }
+.ion-color-lista {
+  --ion-color-base: var(--ion-color-lista);
+  --ion-color-base-rgb: var(--ion-color-lista-rgb);
+  --ion-color-contrast: var(--ion-color-lista-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-lista-contrast-rgb);
+  --ion-color-shade: var(--ion-color-lista-shade);
+  --ion-color-tint: var(--ion-color-lista-tint);
+}
 
 ion-content {
   --background: var(--ion-background-color);
 }
-
-//
