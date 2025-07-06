@@ -88,15 +88,4 @@ ion-content {
   --background: var(--ion-background-color);
 }
 
-ion-toolbar {
-  /* Bakgrund + text */
-  --background: var(--ion-color-basketboll);
-  --color: var(--ion-color-primary-contrast);
-  /* Om du vill ta bort default‑borden i iOS/MD */
-  --border-color: transparent;
-}
-
-ion-toolbar ion-title {
-  text-align: center;
-  font-size: 1.75rem;
-}
+//
