@@ -1,7 +1,10 @@
-@import 'theme/variables';
-@import 'theme/partials/toolbar';
-@import 'theme/partials/image';
-@import 'theme/partials/button';
+/* ====== DINA SCSS‑FILER (BYT TILL @use) ===== */
+@use 'theme/variables' as *;
+@use 'theme/partials/toolbar' as *;
+@use 'theme/partials/image' as *;
+@use 'theme/partials/button' as *;
+
+/* ====== IONIC – CORE & UTILS (behåll @import .css) ===== */
 /* Core CSS required for Ionic components to work properly */
 @import '@ionic/angular/css/core.css';
 
@@ -18,13 +21,5 @@
 @import '@ionic/angular/css/text-transformation.css';
 @import '@ionic/angular/css/flex-utils.css';
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+/* Dark‑mode palette (låt vara som det är) */
 @import '@ionic/angular/css/palettes/dark.system.css';
