@@ -3,6 +3,8 @@
 @use 'theme/partials/toolbar' as *;
 @use 'theme/partials/image' as *;
 @use 'theme/partials/button' as *;
+@use 'theme/partials/form' as *;
+@use 'theme/partials/error' as *; //src/theme/partials/error.scss
 
 /* ====== IONIC – CORE & UTILS (behåll @import .css) ===== */
 /* Core CSS required for Ionic components to work properly */
