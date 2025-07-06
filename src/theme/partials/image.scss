@@ -1,0 +1,37 @@
+/* Container för bilder */
+.image-container {
+  display: flex;
+  justify-content: center; /* Centrerar horisontellt */
+  padding: 1rem;
+}
+
+/* Styling för ion-img i container */
+.image-container ion-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.image-container ion-img:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Responsivt */
+@media (max-width: 576px) {
+  .image-container {
+    padding: 0.5rem;
+  }
+  .image-container ion-img {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@media (min-width: 577px) and (max-width: 992px) {
+  .image-container {
+    padding: 1rem 2rem;
+  }
+}
