@@ -1,10 +1,20 @@
+ion-modal {
+  --height: auto;
+  --max-height: 90vh;
+}
+
+ion-modal::part(backdrop) {
+  background: rgb(174, 125, 87);
+  --backdrop-opacity: 0.95;
+}
+
 ion-modal::part(content) {
   width: 90%;
   max-width: 420px;
-  margin: 0 auto; /* horisontell centrering */
+  margin: auto;
   border-radius: 20px;
-  background: var(--ion-color-light);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  // background: var(--ion-color-light);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
   padding: 24px;
   animation: fadeUp 260ms cubic-bezier(0.4, 0.8, 0.2, 1) both;
   display: flex;
@@ -16,13 +26,28 @@ ion-modal::part(content) {
   overflow-y: auto;
 }
 
-/* På mindre skärmar: centrerar modalen också vertikalt */
-@media (max-width: 599px) {
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ion-modal::part(content)::-webkit-scrollbar {
+  width: 6px;
+}
+
+ion-modal::part(content)::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+@media (max-width: 400px) {
   ion-modal::part(content) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0; /* ta bort margin som kolliderar med position */
+    padding: 16px;
   }
 }

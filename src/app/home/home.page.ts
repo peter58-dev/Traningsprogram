@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { AddProgramComponent } from '../components/add-program/add-program.component';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +10,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  myForm: FormGroup<any>;
-  constructor(private fb: FormBuilder) {
-    this.myForm = this.fb.group({
-      namn: ['', [Validators.required, Validators.minLength(2)]],
+  constructor(private modalCtrl: ModalController) {}
+
+  async openAddModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddProgramComponent,
+      backdropDismiss: true,
     });
+
+    await modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'save' && data) {
+      console.log('Nytt pass:', data);
+      // Add to your signal, list or storage
+    }
   }
-  green() {
-    console.log('grön');
-  }
-  basket() {
-    console.log('BOLLn');
+
+  showWorkoutsList() {
+    console.log('lista visas');
   }
 }
