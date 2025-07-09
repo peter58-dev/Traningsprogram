@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { AddProgramComponent } from '../components/add-program/add-program.component';
+import { AddWorkoutComponent } from '../workout/components/add-workout/add-workout.component';
 
 @Component({
   selector: 'app-home',
@@ -14,17 +14,16 @@ export class HomePage {
 
   async openAddModal() {
     const modal = await this.modalCtrl.create({
-      component: AddProgramComponent,
+      component: AddWorkoutComponent,
       backdropDismiss: true,
+      cssClass: 'modal-home',
     });
 
     await modal.present();
-
     const { data, role } = await modal.onWillDismiss();
-
-    if (role === 'save' && data) {
-      console.log('Nytt pass:', data);
-      // Add to your signal, list or storage
+    if (role === 'confirm') {
+      // Hantera data här, t.ex. spara till Firestore
+      console.log('Modal confirmed with data:', data);
     }
   }
 

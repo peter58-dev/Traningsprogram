@@ -8,8 +8,17 @@ import { WorkoutsPageRoutingModule } from './workouts-routing.module';
 
 import { WorkoutsPage } from './workouts.page';
 
+// <-- Glöm inte att importera modulen här:
+import { AddWorkoutModule } from '../../components/add-workout/add-workout.module';
+
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, WorkoutsPageRoutingModule],
   declarations: [WorkoutsPage],
+  imports: [
+    CommonModule,
+    IonicModule,
+    AddWorkoutModule, // Nu funkar det, eftersom modulen är importerad
+    WorkoutsPageRoutingModule, // glöm inte routingmodulen!
+    FormsModule, // viktigt om du använder formulär
+  ],
 })
 export class WorkoutsPageModule {}

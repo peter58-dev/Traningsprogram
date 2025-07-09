@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProgramService } from './program.service';
+import { ProgramService } from '../../shared/services/program.service';
 
 describe('ProgramService', () => {
   let service: ProgramService;
