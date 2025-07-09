@@ -16,6 +16,15 @@ ion-button.btn {
   transition: all 0.2s ease;
   --border-radius: 8px;
 
+  /* --- Disabled buttons -------------------------------------------------- */
+  ion-button[disabled] {
+    opacity: 0.5;
+    pointer-events: none; /* extra skydd mot klick */
+    filter: none !important; /* neutralisera hover-effekter */
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
   /* Hover feedback (always active on pointer devices) */
   &:hover {
     filter: brightness(1.1);

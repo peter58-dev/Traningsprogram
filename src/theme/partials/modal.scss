@@ -1,53 +1,60 @@
+// Bas: allmän stil för alla modaler
 ion-modal {
-  --height: auto;
-  --max-height: 90vh;
+  --max-height: 100vh; // tillåt att modalen blir stor om behövs
+  --width: auto;
+  --border-radius: 20px;
+  --backdrop-opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+// Backdrop-stil
 ion-modal::part(backdrop) {
-  background: rgb(174, 125, 87);
-  --backdrop-opacity: 0.95;
+  background-color: rgba(0, 0, 0, 0.6); // mörkare backdrop
 }
 
+// Innehållets stil – detta gäller alla modaler om ej överskrivet
 ion-modal::part(content) {
-  width: 90%;
-  max-width: 420px;
-  margin: auto;
-  border-radius: 20px;
-  // background: var(--ion-color-light);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  background: white;
   padding: 24px;
-  animation: fadeUp 260ms cubic-bezier(0.4, 0.8, 0.2, 1) both;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font-family: var(--ion-font-family);
-  color: var(--ion-color-dark);
-  max-height: 80vh;
   overflow-y: auto;
+  max-height: 90vh;
 }
 
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+// 💡 Specialklass: liten modal (t.ex. från home.page)
+ion-modal.modal-home::part(content) {
+  height: 30vh;
+  max-height: 30vh;
+  width: 90%;
 }
 
-ion-modal::part(content)::-webkit-scrollbar {
-  width: 6px;
+// 💪 Specialklass: större modal (t.ex. från workouts.page)
+ion-modal.modal-workout::part(content) {
+  height: 66vh;
+  max-height: 66vh;
+  width: 95%;
 }
 
-ion-modal::part(content)::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
+// 🔁 Responsivt stöd för mycket små skärmar
 @media (max-width: 400px) {
   ion-modal::part(content) {
     padding: 16px;
+    width: 95%;
+    border-radius: 12px;
   }
+}
+
+// Extra: scrollbar för långt innehåll
+ion-modal::part(content)::-webkit-scrollbar {
+  width: 6px;
+}
+ion-modal::part(content)::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }
