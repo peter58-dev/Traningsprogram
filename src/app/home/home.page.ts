@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { AddWorkoutComponent } from '../workout/components/add-workout/add-workout.component';
 import { ProgramService } from '../shared/services/program.service';
 import { Router } from '@angular/router';
@@ -15,8 +15,23 @@ export class HomePage {
   constructor(
     private modalCtrl: ModalController,
     private workoutService: ProgramService,
-    private router: Router
+    private router: Router,
+    private toastCtrl: ToastController
   ) {}
+
+  async showProgramSavedToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Program tillagt!',
+      duration: 1200,
+      position: 'middle',
+      cssClass: 'green-toast',
+    });
+
+    await toast.present();
+
+    // Vänta på att toasten försvinner
+    return toast.onDidDismiss();
+  }
 
   async openAddModal() {
     const modal = await this.modalCtrl.create({
@@ -30,11 +45,12 @@ export class HomePage {
 
     if (role === 'confirm') {
       try {
-        await this.workoutService.addProgram(data); // 🧠 detta triggar din listener automatiskt
+        await this.workoutService.addProgram(data);
         console.log('Program saved to Firestore');
 
-        // ✅ Navigera till "lista"-sidan efter att programmet sparats
-        this.router.navigate(['/workouts']);
+        await this.showProgramSavedToast(); // Vänta toasten klart
+
+        this.router.navigate(['/workouts']); // Navigera EFTER toasten är klar
       } catch (error) {
         console.error('Error saving program to Firestore:', error);
       }

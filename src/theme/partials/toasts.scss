@@ -1,32 +1,41 @@
-// Basstil för alla toasts
-ion-toast {
-  --background: #333333; // Mörk bakgrund för bra kontrast
-  --color: #ffffff; // Vit text
+ion-toast.green-toast {
+  --background: #c6e9be; // lite mörkare ljusgrön (föregående #dfffe2 var väldigt ljus)
+  --color: #1b4021; // mörkgrön text, samma som tidigare
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   --border-radius: 12px;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 14px 20px;
-  max-width: 90vw;
-  min-width: 280px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  --font-size: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-width: 240px;
+  --max-width: 90vw;
+  --max-height: 80vh;
 }
 
-// Specialklass för större toast (om du vill ha det)
-ion-toast.toast-large {
-  max-width: 400px;
-  font-size: 1.1rem;
-  padding: 18px 24px;
+// Meddelandestil (själva texten i toasten)
+ion-toast.green-toast::part(message) {
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.4;
 }
 
-// Responsivitet för små skärmar
+// Knappar i toasten (om du använder knappar)
+ion-toast.green-toast::part(button) {
+  color: #0f2d10;
+  font-size: 14px;
+  border-left: 1px solid #b5ddb8;
+  padding-left: 12px;
+}
+
+// 🔁 Extra responsivitet för mycket små skärmar
 @media (max-width: 400px) {
-  ion-toast {
-    max-width: 95vw;
-    font-size: 0.9rem;
-    padding: 12px 16px;
+  ion-toast.green-toast {
+    --font-size: 14px;
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+
+  ion-toast.green-toast::part(button) {
+    font-size: 13px;
+    padding-left: 8px;
   }
 }
