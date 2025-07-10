@@ -1,0 +1,32 @@
+// Basstil för alla toasts
+ion-toast {
+  --background: #333333; // Mörk bakgrund för bra kontrast
+  --color: #ffffff; // Vit text
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 20px;
+  max-width: 90vw;
+  min-width: 280px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Specialklass för större toast (om du vill ha det)
+ion-toast.toast-large {
+  max-width: 400px;
+  font-size: 1.1rem;
+  padding: 18px 24px;
+}
+
+// Responsivitet för små skärmar
+@media (max-width: 400px) {
+  ion-toast {
+    max-width: 95vw;
+    font-size: 0.9rem;
+    padding: 12px 16px;
+  }
+}
