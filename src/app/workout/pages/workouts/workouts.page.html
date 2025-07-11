@@ -3,21 +3,23 @@
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/']">hem</ion-button>
     </ion-buttons>
-    <ion-title>Workouts</ion-title>
+    <ion-title>Listan med Workouts</ion-title>
     <ion-buttons slot="end">
-      <ion-button>add</ion-button>
+      <ion-button (click)="openAddModal()">nytt program</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <h2>Listan med Workouts</h2>
+<ion-content>
   <ion-list>
-    <ion-item *ngFor="let workout of programs()">
-      <p>id: {{workout.id}}</p>
-      <p>namn: {{workout.workoutName}}</p>
-      <p>skapad: {{workout.createdAt}}</p>
-      <ion-button fill="outline" color="danger" (click)="deleteWorkout(workout.id)" />
-    </ion-item>
+    <div class="workout-container" *ngFor="let workout of programs()">
+      <span class="workout-name">{{ workout.workoutName }}</span>
+      <div class="button-group">
+        <app-delete-button (delete)="deleteWorkout(workout.id)" />
+        <ion-button fill="clear" size="small" (click)="openAddModal()">
+          <ion-icon name="add" slot="icon-only" />
+        </ion-button>
+      </div>
+    </div>
   </ion-list>
 </ion-content>

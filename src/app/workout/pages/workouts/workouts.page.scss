@@ -1,0 +1,18 @@
+.workout-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // 👈 detta håller text och knappar på samma HÖJD
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.workout-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  align-items: center; // 👈 se till att ikonerna också är centrerade
+}
