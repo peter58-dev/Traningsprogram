@@ -10,6 +10,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <h2>Lista med Workouts</h2>
+<ion-content class="ion-padding">
+  <h2>Listan med Workouts</h2>
+  <ion-list>
+    <ion-item *ngFor="let workout of programs()">
+      <p>id: {{workout.id}}</p>
+      <p>namn: {{workout.workoutName}}</p>
+      <p>skapad: {{workout.createdAt}}</p>
+      <ion-button fill="outline" color="danger" (click)="deleteWorkout(workout.id)" />
+    </ion-item>
+  </ion-list>
 </ion-content>
