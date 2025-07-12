@@ -1,18 +1,19 @@
-.workout-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; // 👈 detta håller text och knappar på samma HÖJD
-  padding: 10px 12px;
-  border-bottom: 1px solid #ddd;
-}
+ion-item.custom-item {
+  --background: #f6bf51; // nära din --ion-background-color: #fff1e6
+  --border-radius: 0.75rem;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  --min-height: 56px;
+  margin: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
 
-.workout-name {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
+  border: 1px solid #f0e0d0;
 
-.button-group {
-  display: flex;
-  gap: 8px;
-  align-items: center; // 👈 se till att ikonerna också är centrerade
+  &:hover {
+    --background: #ffe9d9;
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
 }
