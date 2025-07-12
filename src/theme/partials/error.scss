@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .input-error {
   border: 1px solid var(--ion-color-danger);
   background-color: #ffe6e6;

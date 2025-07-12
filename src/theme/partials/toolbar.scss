@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 ion-toolbar {
   /* Bakgrund + text */
   --background: var(--ion-color-basketboll);

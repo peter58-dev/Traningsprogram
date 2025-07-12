@@ -4,9 +4,10 @@
 @use 'theme/partials/image' as *;
 @use 'theme/partials/button' as *;
 @use 'theme/partials/form' as *;
-@use 'theme/partials/error' as *; //src/theme/partials/error.scss
-@use 'theme/partials/modal' as *; //src/theme/partials/modal.scss
+@use 'theme/partials/error' as *;
+@use 'theme/partials/modal' as *;
 @use 'theme/partials/toasts' as *;
+@use 'theme/partials/lists' as *;
 
 /* ====== IONIC – CORE & UTILS (behåll @import .css) ===== */
 /* Core CSS required for Ionic components to work properly */
