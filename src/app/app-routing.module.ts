@@ -23,6 +23,13 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardPageModule),
   },
+  {
+    path: 'workout-session',
+    loadChildren: () =>
+      import('./features/workout/pages/workout-session/workout-session.module').then(
+        (m) => m.WorkoutSessionPageModule
+      ),
+  },
 ];
 
 @NgModule({
