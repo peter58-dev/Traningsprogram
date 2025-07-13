@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController, ToastController } from '@ionic/angular';
 import { AddWorkoutComponent } from '../workout/components/add-workout/add-workout.component';
 import { ProgramService } from '../shared/services/program.service';
 import { Router } from '@angular/router';
+import { AppStateService } from '../shared/services/app-state.service';
+import { NetworkService } from '../shared/services/network.service';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +13,27 @@ import { Router } from '@angular/router';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  // lastUrl: string | null = null;
+  lastVisitedUrl = this.appState.lastVisitedUrl;
+  // Gör signalen tillgänglig i templaten
+  networkStatus = this.networkService.getSignal();
+
   constructor(
     private modalCtrl: ModalController,
     private workoutService: ProgramService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private appState: AppStateService,
+    public networkService: NetworkService
   ) {}
+
+  ngOnInit(): void {
+    // Om du vill agera direkt vid offline – till exempel logga eller ladda något från cache
+    if (!this.networkStatus()) {
+      console.log('Offline-läge aktiv – laddar från lokal cache');
+    }
+  }
 
   async showProgramSavedToast() {
     const toast = await this.toastCtrl.create({

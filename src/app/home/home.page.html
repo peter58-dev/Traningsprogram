@@ -2,6 +2,11 @@
   <ion-title>Välkommen</ion-title>
 </ion-toolbar>
 <ion-content class="ion-padding">
+  <div *ngIf="!networkStatus()" class="offline-banner">
+    <ion-icon name="cloud-offline-outline" />
+    <span>Offline-läge aktiv</span>
+  </div>
+
   <svg viewBox="0 0 500 200" width="100%" height="150" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <!-- Kurvad path -->
@@ -35,6 +40,14 @@
     <ion-button class="btn ion-activatable ripple-parent" color="success" (click)="openAddModal()">
       workout
       <ion-icon slot="start" name="add" />
+      <ion-ripple-effect />
+    </ion-button>
+
+    <!-- fortsätt träningen -->
+
+    <ion-button *ngIf="lastVisitedUrl()" [routerLink]="[lastVisitedUrl()]">
+      Fortsätt Träningen
+      <ion-icon slot="end" name="play" />
       <ion-ripple-effect />
     </ion-button>
 

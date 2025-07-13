@@ -6,8 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 //importer för Firebase och Firestore tillagda
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideFirebaseApp, initializeApp, getApp } from '@angular/fire/app';
+import {
+  enableIndexedDbPersistence,
+  getFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+  persistentMultipleTabManager,
+  provideFirestore,
+} from '@angular/fire/firestore';
 
 //import firebaseConfig
 import { environment } from 'src/environments/environment';
@@ -16,10 +23,14 @@ import { environment } from 'src/environments/environment';
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    provideFirestore(() => {
+      return initializeFirestore(getApp(), {
+        localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
+      });
+    }),
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
