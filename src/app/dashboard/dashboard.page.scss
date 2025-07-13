@@ -1,0 +1,28 @@
+.greetings {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+
+  svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+  }
+}
+
+ion-content {
+  background: var(--app-background) !important;
+}
+
+.offline-banner {
+  background-color: #ffc107;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
