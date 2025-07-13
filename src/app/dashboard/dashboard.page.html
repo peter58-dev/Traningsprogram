@@ -37,7 +37,11 @@
 
   <div class="btn-container">
     <!-- LÄGG TILL  (green, success) -->
-    <ion-button class="btn ion-activatable ripple-parent" color="success" (click)="openAddModal()">
+    <ion-button
+      class="btn ion-activatable ripple-parent"
+      color="success"
+      [routerLink]="['/workout-session']"
+    >
       Starta nytt pass
       <ion-icon slot="start" name="add" />
       <ion-ripple-effect />
