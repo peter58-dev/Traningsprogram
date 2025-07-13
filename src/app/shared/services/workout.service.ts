@@ -56,7 +56,7 @@ function parseExerciseDoc(doc: DocumentData, id: string): Exercise | null {
   const sets = Array.isArray(doc['sets']) ? doc['sets'] : [];
 
   if (typeof name !== 'string') {
-    console.warn(`❌ Ogiltigt dokument: ${id}`, doc);
+    console.warn(` Ogiltigt dokument: ${id}`, doc);
     return null;
   }
 
