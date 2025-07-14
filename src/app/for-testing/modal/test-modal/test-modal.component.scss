@@ -1,0 +1,14 @@
+.modal-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem; // skapar luft runt innehållet
+  padding: 0.5rem;
+  background: inherit; // ärv modalens bakgrund
+  border-radius: 0.5rem;
+}
+.modal-body h3 {
+  margin-top: 0.25rem; // justera vid behov
+}

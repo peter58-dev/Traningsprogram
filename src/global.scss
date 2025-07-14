@@ -1,13 +1,14 @@
-/* ====== DINA SCSS‑FILER (BYT TILL @use) ===== */
+/* ======  SCSS‑FILER  ===== */
 @use 'theme/variables' as *;
 @use 'theme/partials/toolbar' as *;
 @use 'theme/partials/image' as *;
 @use 'theme/partials/button' as *;
 @use 'theme/partials/form' as *;
 @use 'theme/partials/error' as *;
-@use 'theme/partials/modal' as *;
+
 @use 'theme/partials/toasts' as *;
 @use 'theme/partials/lists' as *;
+@use 'theme/partials/modal' as *;
 
 /* ====== IONIC – CORE & UTILS (behåll @import .css) ===== */
 /* Core CSS required for Ionic components to work properly */

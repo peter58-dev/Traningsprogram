@@ -45,6 +45,7 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
   async openExerciseModal(): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: ExerciseModalComponent,
+      cssClass: 'modal-base',
       backdropDismiss: true,
     });
 

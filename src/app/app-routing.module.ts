@@ -30,6 +30,11 @@ const routes: Routes = [
         (m) => m.WorkoutSessionPageModule
       ),
   },
+  {
+    path: 'test-page',
+    loadChildren: () =>
+      import('./for-testing/pages/test-page/test-page.module').then((m) => m.TestPagePageModule),
+  },
 ];
 
 @NgModule({
