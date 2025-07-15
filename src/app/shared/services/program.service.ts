@@ -1,32 +1,28 @@
 import { Injectable, signal } from '@angular/core';
-import { Program } from '../../workout/models/workout.model';
+import { Program } from '../models/program.model';
 import {
   DocumentData,
   Firestore,
   addDoc,
-  collection,
   deleteDoc,
-  doc,
   onSnapshot,
   updateDoc,
 } from '@angular/fire/firestore';
+import { getProgramCollection, getProgramDoc } from '../firestore-utils/firestore-paths';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProgramService {
-  // Signal för listan av program
   readonly programs = signal<Program[]>([]);
-
   private unsubscribe: (() => void) | undefined;
 
   constructor(private firestore: Firestore) {
     this.initTrainingProgramListener();
   }
 
-  // Lyssnar på alla träningsprogram
   initTrainingProgramListener() {
-    const colRef = collection(this.firestore, 'trainingPrograms');
+    const colRef = getProgramCollection(this.firestore);
     this.unsubscribe = onSnapshot(colRef, (snapshot) => {
       const programs = snapshot.docs
         .map((doc) => parseProgramDoc(doc.data(), doc.id))
@@ -37,47 +33,38 @@ export class ProgramService {
     });
   }
 
-  // Skapar ett nytt program, Firestore autogenererar id
   async addProgram(program: Omit<Program, 'id'>) {
-    const colRef = collection(this.firestore, 'trainingPrograms');
+    const colRef = getProgramCollection(this.firestore);
     await addDoc(colRef, program);
   }
 
-  // Uppdaterar workoutName på ett befintligt program
-  async updateProgram(id: string, workoutName: string) {
-    const docRef = doc(this.firestore, 'trainingPrograms', id);
-    await updateDoc(docRef, { workoutName });
+  async updateProgram(id: string, updates: Partial<Program>) {
+    const docRef = getProgramDoc(this.firestore, id);
+    await updateDoc(docRef, updates);
   }
 
-  // Tar bort ett program
   async deleteProgram(id: string) {
-    const docRef = doc(this.firestore, 'trainingPrograms', id);
+    const docRef = getProgramDoc(this.firestore, id);
     await deleteDoc(docRef);
   }
 
-  // Avsluta lyssning när det behövs (t.ex. vid komponent-destroy)
   stopTrainingProgramsListener() {
     if (this.unsubscribe) this.unsubscribe();
   }
 }
 
-// Hjälpfunktion för att tolka dokument och hantera saknade fält
 function parseProgramDoc(doc: DocumentData, id: string): Program | null {
-  const workoutName = doc['workoutName'] || doc['namn'];
-
+  const workoutName = doc['workoutName'];
   if (typeof workoutName !== 'string') {
     console.warn(`⚠️ Ogiltigt dokument: ${id}`, doc);
     return null;
   }
 
-  // duration och type är valfria, inkluderas bara om de finns och är rätt typ
-  const duration = typeof doc['duration'] === 'number' ? doc['duration'] : undefined;
-  const type = typeof doc['type'] === 'string' ? doc['type'] : undefined;
-
   return {
     id,
     workoutName,
-    duration,
-    type,
+    duration: typeof doc['duration'] === 'number' ? doc['duration'] : undefined,
+    type: typeof doc['type'] === 'string' ? doc['type'] : undefined,
+    createdAt: doc['createdAt'] instanceof Date ? doc['createdAt'] : undefined,
   };
 }
