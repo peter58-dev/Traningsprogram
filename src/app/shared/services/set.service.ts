@@ -11,6 +11,8 @@ import { ExerciseSet } from '../models/set.model';
 import { getSetCollection, getSetDoc } from '../firestore-utils/firestore-paths';
 
 @Injectable({ providedIn: 'root' })
+
+// med automatisk set-nummer
 export class SetService {
   readonly sets = signal<ExerciseSet[]>([]);
   private unsubscribe: (() => void) | undefined;
@@ -27,9 +29,21 @@ export class SetService {
     });
   }
 
-  async addSet(programId: string, exerciseId: string, setData: Omit<ExerciseSet, 'id'>) {
+  // ➕ Lägg till med automatisk set-nummer
+  async addSet(programId: string, exerciseId: string, partialSet: Omit<ExerciseSet, 'set'>) {
+    const currentSets = this.sets();
+    const nextSetNumber = Math.max(0, ...currentSets.map((s) => s.set)) + 1;
+
     const colRef = getSetCollection(this.firestore, programId, exerciseId);
-    await addDoc(colRef, setData);
+    await addDoc(colRef, { set: nextSetNumber, ...partialSet });
+  }
+
+  // 💾 Bulk-spara flera sets
+  async saveAllSets(programId: string, exerciseId: string, setsToSave: ExerciseSet[]) {
+    const colRef = getSetCollection(this.firestore, programId, exerciseId);
+    for (const set of setsToSave) {
+      await addDoc(colRef, set);
+    }
   }
 
   async updateSet(

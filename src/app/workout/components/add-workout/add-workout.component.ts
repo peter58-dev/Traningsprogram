@@ -9,7 +9,7 @@ import {
 import { IonHeader } from '@ionic/angular/standalone';
 import { ProgramService } from '../../../shared/services/program.service';
 import { IonicModule, ModalController } from '@ionic/angular';
-import { Program } from '../../models/workout.model';
+import { Program } from '../../../shared/models/program.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

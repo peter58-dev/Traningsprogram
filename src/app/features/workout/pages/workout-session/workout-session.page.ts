@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ExerciseModalComponent } from 'src/app/features/modals/exercise-modal/exercise-modal.component';
-import { ExerciseService } from 'src/app/features/services/exercise.service';
-import { Exercise } from 'src/app/models/exercise.model';
+import { ExerciseService } from '../../../../shared/services/exercise.service';
+import { Exercise } from '../../../../shared/models/exercise.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-workout-session',
@@ -15,20 +16,33 @@ import { Exercise } from 'src/app/models/exercise.model';
  * Initialiserar övningslyssnaren och visar modal för att lägga till nya övningar.
  */
 export class WorkoutSessionPage implements OnInit, OnDestroy {
+  programId: string | undefined;
+  /**
+   * @param exerciseService Service för hantering av övningar (CRUD, synkning).
+   * @param modalCtrl Hanterar öppning/stängning av modal-vyer.
+   */
+
   /**
    * @param exerciseService Service för hantering av övningar (CRUD, synkning).
    * @param modalCtrl Hanterar öppning/stängning av modal-vyer.
    */
   constructor(
     private exerciseService: ExerciseService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private route: ActivatedRoute
   ) {}
 
   /**
    * Livscykel-hook som initierar lyssnare på övningsdata vid sidans start.
    */
   ngOnInit(): void {
-    this.exerciseService.initExerciseListener();
+    const id = this.route.snapshot.paramMap.get('programId');
+    if (id) {
+      this.programId = id;
+      this.exerciseService.initExerciseListener(this.programId);
+    } else {
+      console.warn('⚠️ programId saknas i routing');
+    }
   }
 
   /**
@@ -59,7 +73,10 @@ export class WorkoutSessionPage implements OnInit, OnDestroy {
       };
 
       try {
-        await this.exerciseService.addExercise(newExercise);
+        const programId = this.route.snapshot.paramMap.get('programId');
+        if (programId && newExercise) {
+          await this.exerciseService.addExercise(programId, newExercise);
+        }
       } catch (error) {
         console.error('Kunde inte lägga till övningen:', error);
       }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProgramService } from 'src/app/shared/services/program.service';
-import { Program } from 'src/app/workout/models/workout.model';
+import { Program } from '../../../../shared/models/program.model';
 import { IonHeader } from '@ionic/angular/standalone';
 
 @Component({

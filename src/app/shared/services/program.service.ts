@@ -1,25 +1,21 @@
 import { Injectable, signal } from '@angular/core';
-import { Program } from '../models/program.model';
 import {
-  DocumentData,
   Firestore,
-  addDoc,
-  deleteDoc,
   onSnapshot,
+  addDoc,
   updateDoc,
+  deleteDoc,
+  DocumentData,
 } from '@angular/fire/firestore';
+import { Program } from '../models/program.model';
 import { getProgramCollection, getProgramDoc } from '../firestore-utils/firestore-paths';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ProgramService {
   readonly programs = signal<Program[]>([]);
   private unsubscribe: (() => void) | undefined;
 
-  constructor(private firestore: Firestore) {
-    this.initTrainingProgramListener();
-  }
+  constructor(private firestore: Firestore) {}
 
   initTrainingProgramListener() {
     const colRef = getProgramCollection(this.firestore);
