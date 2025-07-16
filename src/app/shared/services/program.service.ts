@@ -6,8 +6,10 @@ import {
   updateDoc,
   deleteDoc,
   DocumentData,
+  Timestamp,
+  serverTimestamp,
 } from '@angular/fire/firestore';
-import { Program } from '../models/program.model';
+import { CreateProgramInput, Program } from '../models/program.model';
 import { getProgramCollection, getProgramDoc } from '../firestore-utils/firestore-paths';
 
 @Injectable({ providedIn: 'root' })
@@ -23,15 +25,22 @@ export class ProgramService {
       const programs = snapshot.docs
         .map((doc) => parseProgramDoc(doc.data(), doc.id))
         .filter((program): program is Program => program !== null)
-        .sort((a, b) => a.workoutName.localeCompare(b.workoutName));
+        .sort((a, b) => {
+          const dateA = a.createdAt?.getTime() ?? 0;
+          const dateB = b.createdAt?.getTime() ?? 0;
+          return dateB - dateA; // ⬆️ Nyast först
+        });
 
       this.programs.set(programs);
     });
   }
 
-  async addProgram(program: Omit<Program, 'id'>) {
+  async addProgram(program: CreateProgramInput) {
     const colRef = getProgramCollection(this.firestore);
-    await addDoc(colRef, program);
+    await addDoc(colRef, {
+      ...program,
+      createdAt: serverTimestamp(),
+    });
   }
 
   async updateProgram(id: string, updates: Partial<Program>) {
@@ -56,11 +65,20 @@ function parseProgramDoc(doc: DocumentData, id: string): Program | null {
     return null;
   }
 
+  let createdAt: Date | undefined;
+  const rawCreatedAt = doc['createdAt'];
+
+  if (rawCreatedAt instanceof Timestamp) {
+    createdAt = rawCreatedAt.toDate();
+  } else if (rawCreatedAt instanceof Date) {
+    createdAt = rawCreatedAt;
+  }
+
   return {
     id,
     workoutName,
     duration: typeof doc['duration'] === 'number' ? doc['duration'] : undefined,
     type: typeof doc['type'] === 'string' ? doc['type'] : undefined,
-    createdAt: doc['createdAt'] instanceof Date ? doc['createdAt'] : undefined,
+    createdAt,
   };
 }
