@@ -8,4 +8,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" />
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let workout of workouts()">
+      <ion-label>{{workout.workoutName}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
