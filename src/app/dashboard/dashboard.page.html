@@ -35,38 +35,32 @@
     <ion-img src="assets/images/gym.webp" alt="foto från gym" />
   </div>
 
-  <div class="btn-container">
-    <!-- LÄGG TILL  (green, success) -->
-    <ion-button
-      class="btn ion-activatable ripple-parent"
-      color="success"
-      [routerLink]="['/workout-session']"
-    >
-      Starta nytt pass
-      <ion-icon slot="start" name="add" />
-      <ion-ripple-effect />
-    </ion-button>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Din träning väntar – gör ditt val</ion-card-title>
+    </ion-card-header>
 
-    <!-- fortsätt träningen -->
-
-    <ion-button *ngIf="lastVisitedUrl()" [routerLink]="[lastVisitedUrl()]">
-      Fortsätt Träningen
-      <ion-icon slot="end" name="play" />
-      <ion-ripple-effect />
-    </ion-button>
-
-    <!-- VISA LISTA (custom blue #99b3ea you named “lista”) -->
-    <!-- <ion-button
-      class="btn ion-activatable ripple-parent"
-      color="lista"
-      [routerLink]="['/workouts']"
-    >
-      Visa
-      <ion-icon slot="end" name="list" />
-      <ion-ripple-effect />
-    </ion-button> -->
-  </div>
-
+    <ion-card-content>
+      <ion-button
+        class="btn ion-activatable ripple-parent resume"
+        expand="block"
+        *ngIf="lastVisitedUrl()"
+        [routerLink]="[lastVisitedUrl()]"
+      >
+        Fortsätt där du slutade
+        <ion-icon slot="end" name="play" />
+        <ion-ripple-effect />
+      </ion-button>
+      <ion-button class="btn ion-activatable ripple-parent create" expand="block">
+        <ion-icon slot="end" name="document-text" />
+        Skapa träningspass
+      </ion-button>
+      <ion-button class="btn ion-activatable ripple-parent list" expand="block">
+        Mina träningsprogram
+        <ion-icon slot="end" name="list" />
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
   <ion-toast
     id="programSavedToast"
     message="Program tillagt!"

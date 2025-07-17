@@ -4,22 +4,10 @@
       <ion-button [routerLink]="['/']">hem</ion-button>
     </ion-buttons>
     <ion-title>Listan med Workouts</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="openAddModal()">nytt program</ion-button>
-    </ion-buttons>
+    <ion-buttons slot="end" />
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list class="list-wrapper">
-    <ion-item
-      *ngFor="let workout of programs()"
-      [routerLink]="['/selected-workout', workout.id]"
-      button
-      class="custom-item"
-    >
-      <ion-label>{{ workout.workoutName }}</ion-label>
-      <app-delete-button (delete)="deleteWorkout(workout.id)" />
-    </ion-item>
-  </ion-list>
+  <h3>lista</h3>
 </ion-content>

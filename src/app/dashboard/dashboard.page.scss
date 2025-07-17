@@ -26,3 +26,93 @@ ion-content {
   align-items: center;
   gap: 8px;
 }
+/* === Återuppta pass: Fortsätt där du slutade ======================= */
+ion-button.resume {
+  --background: var(--ion-color-success);
+  font-weight: bold;
+
+  ion-icon[name='play'] {
+    font-size: 1.2em;
+    color: white;
+  }
+}
+
+/* === Lista pass: Mina träningsprogram ============================== */
+ion-button.list {
+  --background: var(--ion-color-primary);
+  font-weight: bold;
+
+  ion-icon[name='folder-open'],
+  ion-icon[name='list'] {
+    font-size: 1.2em;
+    color: white;
+  }
+}
+
+/* === Skapa pass: Modal för namn & sparande ======================== */
+ion-button.list {
+  --background: var(--ion-color-basketboll);
+  font-weight: bold;
+
+  ion-icon[name='folder-open'],
+  ion-icon[name='list'] {
+    font-size: 1.2em;
+    color: var(--ion-color-primary-contrast); // matchar din toolbar-text
+  }
+}
+// Typografisk fallback för minsta skärmar
+// 354px = mikrojustering, 323px = extremkomprimering (t.ex. Apple Watch browser)
+
+@media (max-width: 354px) {
+  ion-button.btn {
+    font-size: 0.9rem;
+  }
+
+  ion-icon {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 323px) {
+  ion-button.btn {
+    font-size: 0.7rem;
+  }
+
+  ion-icon {
+    font-size: 0.5em;
+  }
+}
+
+ion-card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--ion-color-basketboll);
+  text-align: center;
+  font-style: italic;
+}
+
+/* < 422px */
+@media (max-width: 421px) {
+  ion-card-title {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+}
+
+/* < 370px */
+@media (max-width: 369px) {
+  ion-card-title {
+    font-size: 1rem;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+  }
+}
+
+/* < 345px */
+@media (max-width: 344px) {
+  ion-card-title {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+  }
+}
