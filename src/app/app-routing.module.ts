@@ -35,6 +35,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./for-testing/pages/test-page/test-page.module').then((m) => m.TestPagePageModule),
   },
+  {
+    path: 'workout-list',
+    loadChildren: () =>
+      import('./features/workout/pages/workout-list/workout-list.module').then(
+        (m) => m.WorkoutListPageModule
+      ),
+  },
+  {
+    path: 'workout-details',
+    loadChildren: () =>
+      import('./features/workout/pages/workout-details/workout-details.module').then(
+        (m) => m.WorkoutDetailsPageModule
+      ),
+  },
 ];
 
 @NgModule({
