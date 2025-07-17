@@ -55,7 +55,11 @@
         <ion-icon slot="end" name="document-text" />
         Skapa träningspass
       </ion-button>
-      <ion-button class="btn ion-activatable ripple-parent list" expand="block">
+      <ion-button
+        class="btn ion-activatable ripple-parent list"
+        expand="block"
+        [routerLink]="['/workout-list']"
+      >
         Mina träningsprogram
         <ion-icon slot="end" name="list" />
       </ion-button>
