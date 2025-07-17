@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-workout-list',
   templateUrl: './workout-list.page.html',
   styleUrls: ['./workout-list.page.scss'],
+  standalone: false,
 })
 export class WorkoutListPage implements OnInit {
   constructor() {}

@@ -7,11 +7,11 @@ const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
-  {
+  /* {
     path: 'workouts',
     loadChildren: () =>
       import('./workout/pages/workouts/workouts.module').then((m) => m.WorkoutsPageModule),
-  },
+  }, */
   {
     path: 'selected-workout/:id',
     loadChildren: () =>
@@ -43,7 +43,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'workout-details',
+    path: 'workout/:id',
     loadChildren: () =>
       import('./features/workout/pages/workout-details/workout-details.module').then(
         (m) => m.WorkoutDetailsPageModule
