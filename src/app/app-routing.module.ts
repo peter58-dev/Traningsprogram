@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'selected-workout/:id',
     loadChildren: () =>
-      import('./workout/pages/workout/selected-workout/selected-workout.module').then(
+      import('./features/workout/pages/selected-workout/selected-workout.module').then(
         (m) => m.SelectedWorkoutPageModule
       ),
   },
@@ -42,13 +42,13 @@ const routes: Routes = [
         (m) => m.WorkoutListPageModule
       ),
   },
-  {
+  /* {
     path: 'workout/:id',
     loadChildren: () =>
       import('./features/workout/pages/workout-details/workout-details.module').then(
         (m) => m.WorkoutDetailsPageModule
       ),
-  },
+  }, */
 ];
 
 @NgModule({

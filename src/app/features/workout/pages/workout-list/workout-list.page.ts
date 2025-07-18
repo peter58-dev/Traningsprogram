@@ -33,7 +33,7 @@ export class WorkoutListPage implements OnDestroy {
    */
   goToWorkout(id: string | undefined): void {
     if (!id) return;
-    this.router.navigate(['/workout', id]);
+    this.router.navigate(['/selected-workout', id]);
   }
 
   /**
