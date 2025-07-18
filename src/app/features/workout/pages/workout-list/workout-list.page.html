@@ -10,8 +10,17 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-item *ngFor="let workout of workouts()">
-      <ion-label>{{workout.workoutName}}</ion-label>
-    </ion-item>
+    <div *ngFor="let workout of workouts()" class="workout-row">
+      <!-- Navigerbart item -->
+      <ion-item button (click)="goToWorkout(workout.id)">
+        <ion-icon slot="start" name="fitness" />
+        <ion-label>{{ workout.workoutName }}</ion-label>
+      </ion-item>
+
+      <!-- Raderingsknapp utanför ion-item -->
+      <div class="delete-button-wrapper" (click)="$event.stopPropagation()">
+        <app-delete-button (delete)="deleteWorkout(workout.id)" />
+      </div>
+    </div>
   </ion-list>
 </ion-content>

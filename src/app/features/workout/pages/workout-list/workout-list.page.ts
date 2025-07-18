@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Program } from 'src/app/shared/models/program.model';
 import { ProgramService } from 'src/app/shared/services/program.service';
 
@@ -9,9 +11,15 @@ import { ProgramService } from 'src/app/shared/services/program.service';
   standalone: false,
 })
 export class WorkoutListPage implements OnDestroy {
+  /**
+   * Signal som innehåller aktuella träningsprogram
+   */
   workouts = this.programService.programs;
 
-  constructor(private programService: ProgramService) {
+  constructor(
+    private programService: ProgramService,
+    private router: Router
+  ) {
     this.programService.initTrainingProgramListener();
   }
 
@@ -19,7 +27,21 @@ export class WorkoutListPage implements OnDestroy {
     this.programService.stopTrainingProgramsListener();
   }
 
-  deleteWorkout(id: string) {
+  /**
+   * Navigerar till workout-detaljsidan för valt program
+   * @param id ID för det träningsprogram som ska visas
+   */
+  goToWorkout(id: string | undefined): void {
+    if (!id) return;
+    this.router.navigate(['/workout', id]);
+  }
+
+  /**
+   * Raderar ett träningsprogram via dess ID
+   * @param id ID för det träningsprogram som ska tas bort
+   */
+  deleteWorkout(id: string | undefined): void {
+    if (!id) return;
     this.programService.deleteProgram(id);
   }
 }
