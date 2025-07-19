@@ -27,6 +27,7 @@ export class DeleteButtonComponent {
 
   async confirmDelete() {
     const alert = await this.alertCtrl.create({
+      cssClass: 'delete-alert',
       header: 'Bekräfta borttagning',
       message: 'Vill du verkligen ta bort detta?',
       buttons: [

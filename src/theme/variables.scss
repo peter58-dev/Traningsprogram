@@ -110,3 +110,11 @@ $xl: 1200px;
 ion-content {
   --background: var(--ion-background-color);
 }
+
+.delete-alert {
+  --background: #fffaf0;
+  --header-color: #cc0000;
+  --ion-text-color: #333;
+  --ion-button-color: #cc0000;
+  --border-radius: 12px;
+}
