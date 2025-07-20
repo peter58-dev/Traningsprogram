@@ -1,29 +1,49 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { AlertController, IonButton, IonIcon, IonicModule } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output, OnInit, inject } from '@angular/core';
+import { AlertController, IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-delete-button',
   standalone: true,
-  template: `
-    <ion-button
-      fill="clear"
-      color="danger"
-      size="small"
-      (click)="confirmDelete()"
-      [aria-label]="label"
-    >
-      <ion-icon [name]="iconName" slot="icon-only" />
-    </ion-button>
-  `,
   imports: [IonicModule],
+  template: `
+    <div
+      class="delete-wrapper"
+      (mouseenter)="hintVisible = true"
+      (mouseleave)="hintVisible = false"
+      (touchstart)="hintVisible = true"
+      (touchend)="hintVisible = false"
+    >
+      <ion-button
+        fill="clear"
+        size="small"
+        color="danger"
+        (click)="confirmDelete()"
+        aria-label="label"
+      >
+        <ion-icon [name]="iconName" slot="icon-only" />
+      </ion-button>
+
+      <span class="hint-label" [class.visible]="hintVisible">
+        {{ hintText }}
+      </span>
+    </div>
+  `,
 })
-export class DeleteButtonComponent {
+export class DeleteButtonComponent implements OnInit {
   @Input() iconName = 'trash-outline';
-  @Input() label = 'Ta bort pass';
+  @Input() label = 'Ta bort';
+  @Input() hintText = 'Radera pass';
 
   @Output() delete = new EventEmitter<void>();
 
+  hintVisible = false;
   private alertCtrl = inject(AlertController);
+
+  ngOnInit(): void {
+    console.log('🪪 label:', this.label);
+    console.log('🗑️ iconName:', this.iconName);
+    console.log('💬 hintText:', this.hintText || '– tomt –');
+  }
 
   async confirmDelete() {
     const alert = await this.alertCtrl.create({
@@ -43,11 +63,3 @@ export class DeleteButtonComponent {
     await alert.present();
   }
 }
-
-/* - 'iconName' används nu via [name], så du kan byta ikon om du vill.
-
-- aria-label och knapptext i alert använder label, så du slipper hårdkoda "Ta bort" fler gånger.
-
- - Default för iconName satt till trash-outline (så du inte får bara "trash" i fallback).
-
-- Slot "icon-only" ger rätt layout i ion-button. */

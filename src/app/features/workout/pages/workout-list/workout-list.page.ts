@@ -15,6 +15,10 @@ export class WorkoutListPage implements OnDestroy {
    * Signal som innehåller aktuella träningsprogram
    */
   workouts = this.programService.programs;
+  hintVisible = false;
+  eyeHintVisible = false;
+  hintMap: Record<string, boolean> = {};
+  eyeHintMap: Record<string, boolean> = {};
 
   constructor(
     private programService: ProgramService,
@@ -43,5 +47,21 @@ export class WorkoutListPage implements OnDestroy {
   deleteWorkout(id: string | undefined): void {
     if (!id) return;
     this.programService.deleteProgram(id);
+  }
+
+  setHint(id: string | undefined, visible: boolean) {
+    if (!id) return;
+    this.hintMap[id] = visible;
+
+    if (visible) {
+      setTimeout(() => {
+        this.hintMap[id] = false;
+      }, 1000); // hint visas i 1 sek
+    }
+  }
+
+  setEyeHint(id: string | undefined, visible: boolean) {
+    if (!id) return;
+    this.eyeHintMap[id] = visible;
   }
 }

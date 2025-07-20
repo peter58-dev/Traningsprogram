@@ -9,18 +9,53 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list>
-    <div *ngFor="let workout of workouts()" class="workout-row">
-      <!-- Navigerbart item -->
-      <ion-item button (click)="goToWorkout(workout.id)">
-        <ion-icon slot="start" name="fitness" />
-        <ion-label>{{ workout.workoutName }}</ion-label>
-      </ion-item>
+  <div class="workout-list-container">
+    <ion-list>
+      <div *ngFor="let workout of workouts()" class="workout-row">
+        <div
+          class="workout-item"
+          (mouseenter)="setHint(workout.id, true)"
+          (mouseleave)="setHint(workout.id, false)"
+          (touchstart)="setHint(workout.id, true)"
+          (touchend)="setHint(workout.id, false)"
+          (click)="goToWorkout(workout.id)"
+        >
+          <ion-label>{{ workout.workoutName }}</ion-label>
+          <ng-container *ngIf="workout?.id as id">
+            <span class="item-hint" [class.visible]="hintMap[id]">Se passets detaljer</span>
+          </ng-container>
+        </div>
 
-      <!-- Raderingsknapp utanför ion-item -->
-      <div class="delete-button-wrapper" (click)="$event.stopPropagation()">
-        <app-delete-button (delete)="deleteWorkout(workout.id)" />
+        <div class="workout-actions" (click)="$event.stopPropagation()">
+          <div
+            class="icon-with-label"
+            (mouseenter)="setEyeHint(workout.id, true)"
+            (mouseleave)="setEyeHint(workout.id, false)"
+            (touchstart)="setEyeHint(workout.id, true)"
+            (touchend)="setEyeHint(workout.id, false)"
+            (click)="goToWorkout(workout.id)"
+          >
+            <ion-icon
+              name="eye-outline"
+              color="success"
+              class="view-icon"
+              aria-label="Visa pass"
+              role="button"
+              tabindex="0"
+            />
+
+            <ng-container *ngIf="workout?.id as id">
+              <span class="icon-label" [class.visible]="eyeHintMap[id]">Öppna pass </span>
+            </ng-container>
+          </div>
+
+          <app-delete-button
+            [iconName]="'trash-outline'"
+            [label]="'Radera pass'"
+            (delete)="deleteWorkout(workout.id)"
+          />
+        </div>
       </div>
-    </div>
-  </ion-list>
+    </ion-list>
+  </div>
 </ion-content>
