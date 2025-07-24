@@ -1,10 +1,15 @@
 // Breakpoints (Sass-variabler)
-$sm: 576px;
+$xs: 0px;
+$sm: 480px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
 :root {
+  --break-sm: 480px;
+  --break-md: 768px;
+  --break-lg: 992px;
+  --break-xl: 1200px;
   --ion-color-primary: #1300e9;
   --ion-color-primary-rgb: 0, 84, 233;
   --ion-color-primary-contrast: #ffffff;
