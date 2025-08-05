@@ -50,7 +50,7 @@
     color: var(--ion-color-danger);
 
     &:hover {
-      color: darken(var(--ion-color-danger), 10%);
+      color: var(--ion-color-danger-shade);
     }
   }
 
@@ -59,7 +59,7 @@
     color: var(--ion-color-success);
 
     &:hover {
-      color: darken(var(--ion-color-success), 10%);
+      color: var(--ion-color-success-shade);
     }
   }
 }
